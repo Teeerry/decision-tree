@@ -6,6 +6,7 @@ Created on July 8, 2019
 '''
 from math import log
 import operator
+import pickle
 
 def calcShannonEnt(dataset):
     """ 计算给定数集的香农熵
@@ -168,3 +169,27 @@ def classify(inputTree, featLabels, testVec):
     else:
         classLabel = valueOfFeat
     return classLabel
+
+def storeTree(inputTree,filename):
+    """ 储存决策树模型
+
+    INPUT：
+        inputTree：决策树模型
+        filename：保存的文件名字
+    OUPUT： 
+        无
+    """ 
+    fw = open(filename,'w')
+    pickle.dump(inputTree, fw)
+    fw.close
+
+def grabTree(filename):
+    """ 读取决策树模型
+
+    INPUT：
+        filename：保存的文件名字
+    OUPUT： 
+        pickle.load(fr):读取的决策树模型
+    """ 
+    fr = open(filename)
+    return pickle.load(fr)
