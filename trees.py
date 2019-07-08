@@ -31,12 +31,12 @@ def calcShannonEnt(dataset):
         labelCounts[currentLabel] += 1
 
         # 根据label标签的占比计算出label的香农熵
-        shannonEnt = 0.0
-        for key in labelCounts:
-            # 利用label的频率计算估计概率
-            prob = float(labelCounts[key])/numEntries
-            shannonEnt -= prob*log(prob,2)
-        return shannonEnt
+    shannonEnt = 0.0
+    for key in labelCounts:
+        # 利用label的频率计算估计概率
+        prob = float(labelCounts[key])/numEntries
+        shannonEnt -= prob*log(prob,2)
+    return shannonEnt
 
 def spiltDataSet(dataset,axis,value):
     """ 按照给定的特征划分数据集
@@ -93,7 +93,7 @@ def chooseBestFeatureToSplit(dataset):
         if (infoGain > bestFeature):
             bestInfoGain = infoGain
             bestFeature = i
-        return bestFeature
+    return bestFeature
 
 def majorityCnt(classList):
     classCount = {}
@@ -110,9 +110,9 @@ def creatTree(dataset, labels):
 
     INPUT：
         dataset：待划分的数据集，形式为[[,,],[,,],[,,]]
-        labels
+        labels: 标签
     OUPUT： 
-        bestFeature: 最优的特征列 
+        myTree: 生成的决策树 
     """  
     classList = [example[-1] for example in dataset]
 
